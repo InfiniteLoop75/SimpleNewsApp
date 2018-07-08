@@ -1,0 +1,10 @@
+./NewsServer/node_modules/
+./NewsClient*.iml
+./NewsClient/.gradle
+./NewsClient/local.properties
+./NewsClient/.idea/workspace.xml
+./NewsClient/.idea/libraries
+./NewsClient/.DS_Store
+./NewsClient/build
+./NewsClient/captures
+./NewsClient/.externalNativeBuild

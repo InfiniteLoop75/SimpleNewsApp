@@ -1,0 +1,33 @@
+<% include ./partials/header %>
+
+<div class="ui vertical menu">
+<h1 class="catHeader">Categories</h1>
+<%categories.forEach(category=>{%>
+
+<div class="collapsable segment ui">
+    <a href="http://localhost:30000/news#<%=category.NAME%>" class="active teal item">
+        <h3><%=category.NAME %></h3>
+        <div class="ui label"><%=category.news.length%></div>
+    </a>
+    <a href="/categories/<%= category.ID %>/edit"><i class="icon pencil alternate cat"></i></a>
+    <form id="delete-button"  action="/categories/<%=category.ID%>?_method=DELETE" method="POST">
+        <button class="trashcustom"><i class="icon trash cat"></i></button>
+    </form>
+  </div>
+  <ul>
+  <%category.news.forEach(data=>{%>
+    <div class="list menu-content">
+        <ul class="news_list ui segment">
+            <li><a href="/news/#<%=data.TITLE%>"><h5><%=data.TITLE%></h5></a></li>
+        </ul>
+    </div>
+  <%})%>
+  </ul>
+<%})%>
+</div>
+<script>
+$('.collapsable > li a').click(function() {
+    $(this).parent().find('ul').toggle();
+});​
+</script>
+<% include ./partials/footer %>

@@ -1,0 +1,20 @@
+{
+  "name": "newsserver2.0",
+  "version": "1.0.0",
+  "description": "Modified version of news server. Added category",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Ibrokhimjon Saydakhmatov",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "method-override": "^2.3.10",
+    "mysql2": "^1.5.3",
+    "sequelize": "^4.38.0"
+  }
+}

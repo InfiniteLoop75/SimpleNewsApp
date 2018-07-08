@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<!--LAYOUT_NEWS_LIST-->
+    <dimen name="layout_height">180dp</dimen>
+    <dimen name="layout_padding">10dp</dimen>
+    <!--IMG_BANNER-->
+    <dimen name="img_width">100dp</dimen>
+    <dimen name="img_height">108dp</dimen>
+    <dimen name="img_margin">8dp</dimen>
+    <!--NEWS_TITLE-->
+    <dimen name="title_size">14sp</dimen>
+    <!--NEWS_DATE-->
+    <dimen name="date_size">10sp</dimen>
+    <dimen name="date_margin_top">4dp</dimen>
+    <!--NEWS_CONTENT-->
+    <dimen name="content_size">12sp</dimen>
+    <dimen name="content_margin_top">6dp</dimen>
+    <dimen name="line_spacing">2sp</dimen>
+</resources>

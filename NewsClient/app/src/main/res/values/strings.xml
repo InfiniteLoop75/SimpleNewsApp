@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">News Mobile</string>
+    <string name="title_sample">Lorem Ipsum Dolor Amet, Consectetur Adipiscing Elit Ipsum Dolor Amet</string>
+    <string name="paragraph_sample">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form...</string>
+    <string name="time_sample">30 min ago</string>
+</resources>

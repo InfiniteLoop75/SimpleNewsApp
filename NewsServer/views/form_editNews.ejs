@@ -1,0 +1,38 @@
+<% include ./partials/header%>
+
+<div class="ui main text container segment">
+    <div class="ui huge header">
+        Edit News
+    </div>
+    <form class="ui form" action="/news/<%=news.ID%>?_method=PUT" method="POST">
+    <div class="field">
+        <label>News title</label>
+        <input type="text" name="title" placeholder="Title" value="<%=news.TITLE%>">
+    </div>
+     <div class="field">
+        <label>News category</label>
+      <select id="selectpicker" class="ui fluid dropdown" name="category">
+        <option selected="<%=news.category.ID%>" value="<%=news.category.ID%>"><%=news.category.NAME %></option>
+          <% categories.forEach((category)=>{%>
+                <%if(category.ID !=news.category.ID){%>
+                    <option  value="<%=category.ID%>"><%=category.NAME %></option>
+                <%}%>   
+
+          <%})%>
+      </select>
+    </div>  
+    <div class="field">
+        <label>Banner</label>
+        <input type="text" name="banner" placeholder="Banner" value="<%=news.IMGURL%>">
+    </div>
+   
+    <div class="field">
+        <label>News Text</label>
+        <textarea rows="10" cols="40" name="text"><%=news.PARAGRAPH%></textarea>
+    </div>
+    
+    <br>
+    <input class="ui blue inverted button" type="submit" name="" value="Update">
+    </form>
+</div>
+<% include ./partials/footer%>
