@@ -11,7 +11,10 @@ import com.infiniteloop.newsmobile.services.CategoryDBFetcher;
 import com.infiniteloop.newsmobile.services.JSONManager;
 import com.infiniteloop.newsmobile.services.Toaster;
 
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.net.HttpURLConnection;
 
 /**
  * Created by hp on 7/6/2018.
@@ -42,31 +45,47 @@ public class CategoriesTask extends AsyncTask<String, Void, JSONObject> {
 
     @Override
     protected JSONObject doInBackground(String... strings) {
+        String urlString = "http://10.0.2.2:3000";
 
 
         JSONManager manager = new JSONManager();
-        JSONObject object = manager.getJSONData(strings[0]);
+        HttpURLConnection conn = manager.connection(strings[0]);
+        JSONObject object = manager.getJSONData(conn);
+        int status = 0;
+        try {
             if(object!=null) {
-                CategoryDBFetcher fetcher = new CategoryDBFetcher(context);
-                fetcher.fillCategoryTable(object, "categories");
-                new NewsTask(context, activity).execute("http://10.0.2.2:3000/api");
-                return object;
+                status = object.getInt("status");
             }else {
-
+                status = 404;
             }
-        return null;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        Log.i(TAG, "doInBackground: " + status);
+        if(status==200) {
+            CategoryDBFetcher fetcher = new CategoryDBFetcher(context);
+            fetcher.fillCategoryTable(object, "categories");
+            new NewsTask(context, activity).execute(urlString + "/api");
+            return object;
+        }else {
+            this.cancel(true);
+            return  null;
+        }
+
+
+    }
+
+    @Override
+    protected void onCancelled(){
+        dialog.dismiss();
+        Toaster.printToast(context, "Server Error");
     }
 
     @Override
     protected void onPostExecute(JSONObject object) {
         super.onPostExecute(object);
-        Log.i(TAG, "doInBackground: " + nManager.getCategories().size());
         dialog.dismiss();
-        if(object==null){
-            Toaster.printToast(context, "UNABLE TO CONNECT SERVER");
-        }
-
-
-
+        Toaster.printToast(context, "Data have been refreshed");
     }
 }

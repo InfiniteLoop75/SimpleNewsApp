@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import com.infiniteloop.newsmobile.data_models.Category;
 import com.infiniteloop.newsmobile.data_models.News;
@@ -34,7 +33,6 @@ public class NewsDBAdapter {
     public NewsDBAdapter(Context c) {
         this.c = c;
         helper = new NewsHelper(c);
-        Log.i(TAG, "NewsDBAdapter: " + isNull(helper));
     }
     private boolean isNull(Object o){
         if(o==null){

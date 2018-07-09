@@ -11,6 +11,8 @@ import com.infiniteloop.newsmobile.services.NewsDBFetcher;
 
 import org.json.JSONObject;
 
+import java.net.HttpURLConnection;
+
 /**
  * Created by hp on 7/6/2018.
  */
@@ -35,12 +37,10 @@ public class NewsTask extends AsyncTask<String, Void, Void> {
     @Override
     protected Void doInBackground(String... strings) {
         JSONManager manager = new JSONManager();
-        JSONObject object = manager.getJSONData(strings[0]);
+        HttpURLConnection connection = manager.connection(strings[0]);
+        JSONObject object = manager.getJSONData(connection);
         NewsDBFetcher fetcher = new NewsDBFetcher(context);
         fetcher.fillNewsTable(object);
-
-
-
         return null;
     }
 

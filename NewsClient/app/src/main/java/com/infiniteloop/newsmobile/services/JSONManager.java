@@ -16,12 +16,13 @@ import java.net.URL;
 
 public class JSONManager {
     private static final String TAG = JSONManager.class.getSimpleName();
-    public JSONObject getJSONData(String sourceURL){
+    public JSONObject getJSONData(HttpURLConnection con){
         String result = "";
         try {
-            URL url = new URL(sourceURL);
-            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+
             int status = con.getResponseCode();
+            con.setConnectTimeout(7000);
+            con.setReadTimeout(15000);
             if(status == 200) {
                 InputStream stream = con.getInputStream();
                 InputStreamReader reader = new InputStreamReader(stream);
@@ -44,6 +45,22 @@ public class JSONManager {
             e.printStackTrace();
         }
 
+        return null;
+    }
+    public HttpURLConnection connection(String sourceURL){
+        URL url;
+        HttpURLConnection con;
+        try {
+            url = new URL(sourceURL);
+            con = (HttpURLConnection) url.openConnection();
+            con.setConnectTimeout(5000);
+            con.setReadTimeout(10000);
+            return  con;
+        }catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 }

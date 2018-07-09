@@ -14,7 +14,7 @@ NewsRouter.get('/', (req, res)=>{
     }
     ).then(foundData=>{
        
-         res.render('index', {
+         res.status(200).render('index', {
             categories: foundData 
          });
    }).catch(err=>{
