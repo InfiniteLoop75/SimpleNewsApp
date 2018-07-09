@@ -9,8 +9,6 @@ import com.infiniteloop.newsmobile.data_models.NewsManager;
 import com.infiniteloop.newsmobile.services.JSONManager;
 import com.infiniteloop.newsmobile.services.NewsDBFetcher;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -38,15 +36,10 @@ public class NewsTask extends AsyncTask<String, Void, Void> {
     protected Void doInBackground(String... strings) {
         JSONManager manager = new JSONManager();
         JSONObject object = manager.getJSONData(strings[0]);
-        try {
-            JSONArray array = object.getJSONArray("news");
-            if((array.length()-nManager.getNewsCount())>=1){
-                NewsDBFetcher fetcher = new NewsDBFetcher(context);
-                fetcher.fillNewsTable(object);
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        NewsDBFetcher fetcher = new NewsDBFetcher(context);
+        fetcher.fillNewsTable(object);
+
+
 
         return null;
     }

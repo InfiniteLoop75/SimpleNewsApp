@@ -22,8 +22,12 @@ public class CategoryDBFetcher {
     }
 
     public void fillCategoryTable(JSONObject jsonObject, String arrayName){
+        adapter.openWritable();
+        if(adapter.getCategoryCount()>0){
+            adapter.clearCategories();
+        }
         try {
-            adapter.openWritable();
+
             JSONArray array = jsonObject.getJSONArray(arrayName);
             for (int i = 0; i<array.length(); i++){
                 JSONObject object = array.getJSONObject(i);

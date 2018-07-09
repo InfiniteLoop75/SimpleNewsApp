@@ -23,8 +23,13 @@ public class NewsDBFetcher {
 
     public void fillNewsTable(JSONObject jsonObject){
 
+        adapter.openWritable();
+        if(adapter.getNewsCount()>0){
+            adapter.clearNews();
+        }
+
         try {
-            adapter.openWritable();
+
             JSONArray array = jsonObject.getJSONArray("news");
 
             for (int i = 0; i<array.length(); i++){

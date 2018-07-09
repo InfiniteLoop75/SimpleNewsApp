@@ -15,21 +15,27 @@ import java.net.URL;
  */
 
 public class JSONManager {
+    private static final String TAG = JSONManager.class.getSimpleName();
     public JSONObject getJSONData(String sourceURL){
         String result = "";
         try {
             URL url = new URL(sourceURL);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
-            InputStream stream = con.getInputStream();
-            InputStreamReader reader = new InputStreamReader(stream);
-            int data = reader.read();
-            while (data!=-1){
-                char charset = (char)data;
-                result+=charset;
-                data = reader.read();
+            int status = con.getResponseCode();
+            if(status == 200) {
+                InputStream stream = con.getInputStream();
+                InputStreamReader reader = new InputStreamReader(stream);
+                int data = reader.read();
+                while (data != -1) {
+                    char charset = (char) data;
+                    result += charset;
+                    data = reader.read();
+                }
+                JSONObject jsonObject = new JSONObject(result);
+                return jsonObject;
+            }else {
+                return null;
             }
-            JSONObject jsonObject = new JSONObject(result);
-            return jsonObject;
         }catch (MalformedURLException ex){
             ex.printStackTrace();
         } catch (IOException e) {

@@ -144,9 +144,17 @@ public class NewsManager {
         }
     }
 
+    public void clearNews(){
+        adapter.clearNews();
+    }
+    public void clearCategories(){
+        adapter.clearCategories();
+    }
+
     public List<Category> getCategories() {
         return categories;
     }
+
 
     public int getCategoryCount(){
         return adapter.getCategoryCount();

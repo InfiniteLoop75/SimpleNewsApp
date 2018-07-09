@@ -4,7 +4,7 @@ package com.infiniteloop.newsmobile.db;
 public class Constants {
 
     public final static String DB_NAME = "NEWS_DB";
-    public final static int DB_VERSION = 21;
+    public final static int DB_VERSION = 22;
     public final static String TABLE_NEWS = "NEWS";
     public final static String NEWS_ID = "ID";
     public final static String NEWS_TITLE = "TITLE";

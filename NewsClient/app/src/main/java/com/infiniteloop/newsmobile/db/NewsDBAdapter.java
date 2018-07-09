@@ -80,7 +80,7 @@ public class NewsDBAdapter {
         values.put(CATEGORY_ID, ID);
         values.put(CATEGORY_NAME, NAME);
         values.put(CATEGORY_DESCRIPTION, DESCRIPTION);
-        long result = db.insertWithOnConflict(TABLE_CATEGORY, null, values, SQLiteDatabase.CONFLICT_IGNORE);
+        long result = db.insertWithOnConflict(TABLE_CATEGORY, null, values, SQLiteDatabase.CONFLICT_REPLACE);
         if(result>0){
             return true;
         }
@@ -168,7 +168,14 @@ public class NewsDBAdapter {
             }
         }
 
+
         return null;
+    }
+    public void clearNews(){
+        db.delete(TABLE_NEWS, null, null);
+    }
+    public void clearCategories(){
+        db.delete(TABLE_CATEGORY,null,null);
     }
 
 

@@ -29,7 +29,7 @@ public class NewsHelper extends SQLiteOpenHelper {
             sqLiteDatabase.execSQL(CATEGORY_CREATE);
             sqLiteDatabase.execSQL(NEWS_CREATE);
         }catch (SQLException ex){
-            Toaster.printLog(c, "Unable to create");
+            Toaster.printToast(c, "Unable to create");
         }
 
     }
@@ -41,7 +41,7 @@ public class NewsHelper extends SQLiteOpenHelper {
             sqLiteDatabase.execSQL(Constants.DROP_CATEGORY);
             onCreate(sqLiteDatabase);
         }catch (SQLException ex){
-            Toaster.printLog(c, "Something went wrong " + ex);
+            Toaster.printToast(c, "Something went wrong " + ex);
         }
     }
 
